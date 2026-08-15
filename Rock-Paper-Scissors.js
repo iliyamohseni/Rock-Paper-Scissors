@@ -4,60 +4,60 @@ let score = JSON.parse(localStorage.getItem("score")) || {
   ties: 0,
 };
 
-HTMLresualt();
+HTMLresult();
 
 function Game(par) {
   let Random = MakeRandom();
-  let Resualt = "";
+  let Result = "";
 
   if (par === "Rock") {
     if (Random === "Rock") {
-      Resualt = "Tie";
+      Result = "Tie";
     } else if (Random === "Paper") {
-      Resualt = "Lose";
+      Result = "Lose";
     } else {
-      Resualt = "Win";
+      Result = "Win";
     }
   } else if (par === "Paper") {
     if (Random === "Rock") {
-      Resualt = "Win";
+      Result = "Win";
     } else if (Random === "Paper") {
-      Resualt = "Tie";
+      Result = "Tie";
     } else {
-      Resualt = "Lose";
+      Result = "Lose";
     }
   } else if (par === "Scissors") {
     if (Random === "Rock") {
-      Resualt = "Lose";
+      Result = "Lose";
     } else if (Random === "Paper") {
-      Resualt = "Win";
+      Result = "Win";
     } else {
-      Resualt = "Tie";
+      Result = "Tie";
     }
   }
 
-  if (Resualt === "Win") {
+  if (Result === "Win") {
     score.wins += 1;
-  } else if (Resualt === "Lose") {
+  } else if (Result === "Lose") {
     score.loses += 1;
-  } else if (Resualt === "Tie") {
+  } else if (Result === "Tie") {
     score.ties += 1;
   }
 
   localStorage.setItem("score", JSON.stringify(score));
 
-  HTMLresualt();
+  HTMLresult();
 
-  document.querySelector(".resualt-js").innerHTML = Resualt;
-  document.querySelector(".hand-resualt-js").innerHTML =
+  document.querySelector(".result-js").innerHTML = Result;
+  document.querySelector(".hand-result-js").innerHTML =
     `<div>You &#10145; <img src="Picture/${par}-emoji.png"> || <img src="Picture/${Random}-emoji.png"> &#11013; computer</div>`;
 }
 
-function HTMLresualt() {
+function HTMLresult() {
   document.querySelector(".score-js").innerHTML =
     `Wins: ${score.wins} || Loses: ${score.loses} || Ties: ${score.ties}`;
-  document.querySelector(".resualt-js").innerHTML = "";
-  document.querySelector(".hand-resualt-js").innerHTML = "";
+  document.querySelector(".result-js").innerHTML = "";
+  document.querySelector(".hand-result-js").innerHTML = "";
 }
 
 function MakeRandom() {
@@ -80,7 +80,7 @@ function Resetbutton() {
   score.loses = 0;
   score.ties = 0;
   localStorage.removeItem("score");
-  HTMLresualt();
+  HTMLresult();
 }
 
 let isAutoPlaying = false;
